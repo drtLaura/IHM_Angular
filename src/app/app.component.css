@@ -1,0 +1,16 @@
+.main-content {
+  display: flex;
+  height: calc(90vh);
+  overflow: hidden;
+}
+app-playlist, app-chat, app-flux {
+  border: 1px solid black;
+}
+
+app-playlist, app-chat {
+  width: 30%;
+}
+
+app-flux {
+  width: 60%;
+}
