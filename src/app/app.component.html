@@ -1,6 +1,22 @@
 <app-header></app-header>
-<div class="main-content">
-  <app-playlist></app-playlist>
-  <app-flux></app-flux>
-  <app-chat></app-chat>
-</div>
+
+<mat-sidenav-container class="sidenav-container">
+  <!-- Barre latérale à gauche pour chat-->
+  <mat-sidenav mode="side" opened class="left-sidenav">
+    <app-playlist></app-playlist>
+  </mat-sidenav>
+
+  <!-- Contenu principal (flux ou s'incrire ou se connecter ) -->
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+  <!-- Barre latérale droite pour playlist -->
+  <mat-sidenav mode="side" position="end" opened class="right-sidenav">
+    <app-chat></app-chat>
+  </mat-sidenav>
+</mat-sidenav-container>
+
+

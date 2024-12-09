@@ -1,16 +1,29 @@
-.main-content {
+
+.sidenav-container {
+  background-color: #CA9FFF;
+  height: calc(100vh - 4rem); /* max moins header */
   display: flex;
-  height: calc(90vh);
-  overflow: hidden;
-}
-app-playlist, app-chat, app-flux {
-  border: 1px solid black;
-}
+  flex-direction: column; /* Contenu en colonne */
+  }
 
-app-playlist, app-chat {
-  width: 30%;
-}
+  .left-sidenav,
+  .right-sidenav {
+  background-color: #232826;
+  flex: 0 0 25% ; /* Barre latérale occupe maintenant 25% de la largeur */
+  max-width: 300px; /* Largeur maximale pour éviter des barres trop larges */
+  min-width: 200px; /* Largeur minimale */
+  height: calc(100vh - 4rem); /* Hauteur : pleine page moins la hauteur du header */
+  }
 
-app-flux {
-  width: 60%;
-}
+  .content {
+  flex: 1;
+  padding: 1rem; /* Espacement intérieur */
+  overflow-y: auto; /* Défilement si nécessaire */
+  }
+
+  @media (max-width: 768px) {
+  .left-sidenav,
+  .right-sidenav {
+    flex: 0 0 35%; /* Plus large sur les écrans petits */
+  }
+  }

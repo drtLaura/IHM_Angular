@@ -1,9 +1,15 @@
-.header {
-  height: 50px;
-  width: 100%;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid black;
+mat-toolbar {
+  background-color: rgb(0, 0, 0);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+mat-toolbar .buttons {
+  margin-left: auto;
+  margin-right: 4rem; /* Ajoute une marge à droite */
+}
+
+mat-toolbar .buttons button:hover {
+  background-color: #CA9FFF; /* Couleur violette */
+  color: black;
 }
