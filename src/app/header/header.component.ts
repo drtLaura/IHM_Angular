@@ -1,37 +1,26 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { RouterLink } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { Observable } from 'rxjs';
+import { Component, Signal } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common'; // Importer CommonModule
+import { MatButtonModule } from '@angular/material/button'; // Importer MatButtonModule
+import { MatToolbar } from '@angular/material/toolbar';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule,RouterOutlet, RouterLink, MatButtonModule, MatToolbarModule],
+  imports: [MatToolbar, MatButtonModule, RouterLink, CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  isAuthenticated: Observable<boolean>; // statut d'authentification : vrai ou faux
-  currentUser: { id: number, username: string } | null = null;
+  isAuthenticated: Signal<boolean>; // initialise l'état de connexion
+  currentUser: Signal<{ id: number; username: string } | null>; // initialise l'utilisateur actuel
 
-  constructor(private authService: AuthService) {
-    this.isAuthenticated = this.authService.isAuth(); // renvoie un observable de behavior subject le statut d'authentification (vrai ou faux)
+  constructor(private authService: AuthService) { // Injecte le service AuthService
+    this.isAuthenticated = this.authService.isAuthenticated;
+    this.currentUser = this.authService.currentUser;
   }
 
-  ngOnInit(): void {
-    this.authService.isAuth().subscribe(auth => {
-      if (auth) {
-        this.currentUser = this.authService.getCurrentUser();
-      } else {
-        this.currentUser = null;
-      }
-    });
-  }
-
-  logout(): void {
+  logout(): void { // méthode pour se déconnecter, appele la méthode logout de AuthService
     this.authService.logout();
   }
 }

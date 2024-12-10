@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private isAuthenticated = new BehaviorSubject<boolean>(false); // Statut d'authentification : vrai ou faux
-  private currentUser = new BehaviorSubject<{ id: number; username: string } | null>(null); // Informations de l'utilisateur actuel
+  isAuthenticated: WritableSignal<boolean> = signal(false); //permet de suivre l'état d'authentification
+  currentUser: WritableSignal<{ id: number; username: string } | null> = signal(null); // permet de suivre l'utilisateur actuel
+
   private Users = [
     { id: 1, username: 'user1', password: 'pass1' },
     { id: 2, username: 'user2', password: 'pass2' },
@@ -14,58 +14,59 @@ export class AuthService {
 
   constructor() {}
 
-  isAuth(): Observable<boolean> {  // vérifie si l'utilisateur est authentifié
-    return this.isAuthenticated.asObservable(); // renvoie un observable de behavior subject le statut d'authentification (vrai ou faux)
-  }
+  // méthode pour se connecter
+  login(username: string, password: string): { success: boolean; message?: string } { // ? = factultatif
+    if (!username || !password) { // si les champs ne sont pas remplis
+      return { success: false, message: 'Veuillez remplir tous les champs' };
+    }
 
-  getCurrentUser(): { id: number, username: string } | null { // récupérer les informations de l'utilisateur
-    return this.currentUser.value; // renvoie les info de l'utilisateur
-  }
-
-  login(username: string, password: string): boolean { // récup les champs du formulaire
-    const user = this.Users.find( // on vérifie si l'utilisateur existe
+    const user = this.Users.find( // vérifie si l'utilisateur existe
       (u) => u.username === username && u.password === password
     );
 
     if (user) { // si l'utilisateur existe
-      this.isAuthenticated.next(true); // maj du statut à true (authentifié)
-      this.currentUser.next({ id: user.id, username: user.username }); // met à jour les info de l'utilisateur
-      return true; // connexion réussie
-    } else { // ci l'utilisateur n'existe pas
-      this.isAuthenticated.next(false); // maj du statut à false (non authentifié)
-      this.currentUser.next(null); //maj des info de l'utilisateur à null
-      return false; // connexion échouée
+      this.isAuthenticated.set(true); // maj signal d'authentification
+      this.currentUser.set({ id: user.id, username: user.username }); // maj signal de l'utilisateur actuel
+      return { success: true }; // retourne un objet avec un succès
+    } else { // si l'utilisateur n'existe pas
+      this.isAuthenticated.set(false); // maj signal d'authentification
+      this.currentUser.set(null); // maj signal de l'utilisateur actuel
+      return { success: false, message: 'Nom d\'utilisateur ou mot de passe incorrect' };
     }
   }
 
-  register(username: string, password1: string, password2: string): boolean {
-    console.log('voici les utilisateurs, register1', this.Users);
-
-    if (password1 !== password2) {
-      return false; // vérification des mdp
+  // méthode pour s'inscrire
+  register(username: string, password1: string, password2: string): { success: boolean, message?: string } {
+    if (!username || !password1 || !password2) { // si les champs ne sont pas remplis
+      return { success: false, message: 'Veuillez remplir tous les champs' };
     }
 
+    if (password1 !== password2) { // si les mots de passe ne correspondent pas
+      return { success: false, message: 'Les mots de passe ne correspondent pas' };
+    }
+
+    // on regarde si les identifiants existent déjà
     const existingUser = this.Users.find((user) => user.username === username);
-    if (existingUser) {
-      return false; // verification de l'existence de l'utilisateur
+    if (existingUser) { // si l'utilisateur existe déjà
+      return { success: false, message: 'L\'utilisateur existe déjà' };
     }
 
+    // on crée un nouvel utilisateur
     const newUser = {
-      id: this.Users.length + 1, // générer un nouvel id
+      id: this.Users.length + 1,
       username: username,
       password: password1,
     };
 
-    this.Users.push(newUser); // ajouter le nouvel utilisateur à la liste
+    this.Users.push(newUser); // ajout à la liste des utilisateurs
 
-    this.isAuthenticated.next(true); // authentifié après l'inscription
-    this.currentUser.next({ id: newUser.id, username: newUser.username });
-    console.log('voici les utilisateurs, register', this.Users);
-    return true; // inscription réussie
+    this.isAuthenticated.set(true); // maj signal d'authentification
+    this.currentUser.set({ id: newUser.id, username: newUser.username }); // maj signal de l'utilisateur actuel
+    return { success: true }; // retourne un objet avec un succès
   }
 
-  logout(): void {
-    this.isAuthenticated.next(false); // maj du statut à false (non authentifié)
-    this.currentUser.next(null); // maj des info de l'utilisateur à null
+  logout(): void { // méthode pour se déconnecter
+    this.isAuthenticated.set(false);
+    this.currentUser.set(null);
   }
 }

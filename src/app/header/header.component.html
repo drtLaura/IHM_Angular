@@ -1,12 +1,16 @@
 <mat-toolbar color="accent">
   <div class="buttons">
-    <ng-container *ngIf="isAuthenticated | async; else notAuthenticated">
-      <span>Bienvenue, {{ currentUser?.username }}</span>
-      <button mat-button (click)="logout()">Déconnecter</button>
+
+    <!-- si l'utilisateur est authentifié, afficher un message de bienvenue et le bouton de déconnexion -->
+    <ng-container *ngIf="isAuthenticated()">
+      <span class="currentUsername">Bonjour  {{ currentUser()?.username }}</span> <!--récupération du pseudo de l'utilisateur -->
+      <button mat-button (click)="logout()">Se déconnecter</button>
     </ng-container>
-    <ng-template #notAuthenticated>
+
+    <!-- si l'utilisateur n'est pas authentifié, afficher les boutons de connexion et d'inscription -->
+    <ng-container *ngIf="!isAuthenticated()">
       <button mat-button [routerLink]="'/login'">Se connecter</button>
       <button mat-button [routerLink]="'/register'">S'inscrire</button>
-    </ng-template>
+    </ng-container>
   </div>
 </mat-toolbar>

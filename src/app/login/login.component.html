@@ -1,8 +1,6 @@
 <div class="login-container">
   <h3>Connectez vous</h3>
-  <form (ngSubmit)="onLogin()">
-
-
+  <form *ngIf="loginStatus !== 'success'" (ngSubmit)="onLogin()">
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>Pseudo</mat-label>
       <input matInput class="field-input" id="username" [(ngModel)]="username" name="username" required />
@@ -11,8 +9,8 @@
 
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>Mot de passe</mat-label>
-      <input matInput [type]="hide() ? 'password' : 'text'" class="field-input" id="password" type="password" [(ngModel)]="password" name="password" required />
-      <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+      <input matInput [type]="hide() ? 'password' : 'text'" class="field-input" id="password" [(ngModel)]="password" name="password" required />
+      <button mat-icon-button matSuffix type="button" (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
         <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
       <mat-error *ngIf="!password">Champs requis</mat-error>
@@ -23,8 +21,11 @@
     </div>
   </form>
 
-  <div *ngIf="loginFailed" class="error-message">
-    Champs invalides, recommencez
+  <div *ngIf="loginStatus === 'failed'" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="loginStatus === 'success'" class="success-message">
+    {{ successMessage }}
   </div>
   <div class="register-link">
     <a [routerLink]="'/register'">Pas encore inscrit ? Créez un compte</a>
