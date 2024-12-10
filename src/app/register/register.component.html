@@ -1,1 +1,39 @@
-<p>register works!</p>
+<div class="login-container">
+  <h3>Inscrivez vous</h3>
+  <form (ngSubmit)="onRegister()">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Pseudo</mat-label>
+      <input matInput class="field-input" id="username" [(ngModel)]="username" name="username" required />
+      <mat-error *ngIf="!username">Champs requis</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput [type]="hide() ? 'password1' : 'text'" class="field-input" id="password1" type="password1" [(ngModel)]="password1" name="password1" required />
+      <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="!password1">Champs requis</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput [type]="hide() ? 'password2' : 'text'" class="field-input" id="password2" type="password2" [(ngModel)]="password2" name="password2" required />
+      <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+        <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="!password2">Champs requis</mat-error>
+    </mat-form-field>
+
+    <div class="submit-container">
+      <button mat-raised-button color="primary" class="submit-button" type="submit">S'inscrire</button>
+    </div>
+  </form>
+
+  <div *ngIf="registerFailed" class="error-message">
+    Champs invalides, recommencez
+  </div>
+  <div class="login-link">
+    <a [routerLink]="'/login'">Vous avez déjà un compte ?</a>
+  </div>
+</div>

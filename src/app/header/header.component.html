@@ -1,6 +1,12 @@
 <mat-toolbar color="accent">
   <div class="buttons">
-    <button mat-button [routerLink]="'/login'">Se connecter</button>
-    <button mat-button [routerLink]="'/register'">S'inscrire</button>
+    <ng-container *ngIf="isAuthenticated | async; else notAuthenticated">
+      <span>Bienvenue, {{ currentUser?.username }}</span>
+      <button mat-button (click)="logout()">Déconnecter</button>
+    </ng-container>
+    <ng-template #notAuthenticated>
+      <button mat-button [routerLink]="'/login'">Se connecter</button>
+      <button mat-button [routerLink]="'/register'">S'inscrire</button>
+    </ng-template>
   </div>
 </mat-toolbar>
