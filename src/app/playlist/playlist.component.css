@@ -1,0 +1,162 @@
+/* Style général */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Corps de la page */
+  body {
+    background-color: #1c1c1c; /* Fond noir */
+    color: #eaeaea; /* Texte gris clair */
+    padding: 20px;
+  }
+  
+  /* Titre principal */
+  h1, h2, h3 {
+    color: #9b4dca; /* Violet */
+    text-align: center;
+  }
+  
+  /* Boutons */
+  button {
+    background-color: #9b4dca; /* Violet */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  button:hover {
+    background-color: #7a38b4; /* Violet plus foncé */
+    transform: translateY(-2px);
+  }
+  
+  /* Style des liens */
+  a {
+    color: #9b4dca; /* Violet */
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: #7a38b4; /* Violet plus foncé */
+  }
+  
+  /* Liste des playlists */
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    background-color: #2e2e2e; /* Gris foncé */
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  ul li:hover {
+    background-color: #3c3c3c; /* Gris clair au survol */
+  }
+  
+  ul li.selected {
+    background-color: #9b4dca; /* Violet pour la playlist sélectionnée */
+    color: white;
+  }
+  
+  /* Formulaire de création/modification */
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #9b4dca;
+    border-radius: 5px;
+    background-color: #2e2e2e;
+    color: white;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #7a38b4; /* Violet plus foncé au focus */
+    outline: none;
+  }
+  
+  /* Formulaire de modification des chansons */
+  input[type="text"]:disabled {
+    background-color: #1c1c1c; /* Désactive l'apparence des champs de texte */
+    border-color: #555;
+    color: #888;
+  }
+  
+  /* Liste des chansons */
+  ul li button {
+    background-color: #ff5e5e; /* Rouge pour le bouton de suppression */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  ul li button:hover {
+    background-color: #ff3b3b; /* Rouge foncé au survol */
+    transform: translateY(-2px);
+  }
+  
+  /* Gestion des sections (pour cacher et afficher) */
+  div {
+    margin-bottom: 20px;
+  }
+  
+  div button:last-of-type {
+    background-color: #777; /* Gris pour le bouton retour */
+  }
+  
+  div button:last-of-type:hover {
+    background-color: #555;
+  }
+  
+  /* Mise en forme pour les zones de texte */
+  textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 2px solid #9b4dca;
+    background-color: #2e2e2e;
+    color: white;
+    font-size: 16px;
+    resize: none;
+  }
+  
+  textarea:focus {
+    border-color: #7a38b4;
+    outline: none;
+  }
+  
+  /* Animation de transition pour les éléments de la page */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

@@ -1,3 +1,46 @@
-<div class="playlist">
-  PlaylistComponent
+<!-- Liste des playlists -->
+<div *ngIf="!selectedPlaylist">
+  <h3>Liste des Playlists</h3>
+
+  <!-- Bouton pour créer une nouvelle playlist -->
+  <button (click)="startNewPlaylist()">Créer une nouvelle playlist</button>
+
+  <ul>
+    <li *ngFor="let playlist of playlists" (click)="selectPlaylist(playlist)">
+      {{ playlist.name }}
+    </li>
+  </ul>
+</div>
+
+<!-- Détails de la playlist sélectionnée -->
+<div *ngIf="selectedPlaylist && !editing">
+  <h2>{{ selectedPlaylist.name }}</h2>
+  <ul>
+    <li *ngFor="let song of selectedPlaylist.songs">
+      {{ song.title }}
+      <button (click)="playAudio(song.url)">Play</button>
+    </li>
+  </ul>
+  <button (click)="editPlaylist()">Modifier</button>
+  <button (click)="deselectPlaylist()">Retour à la liste</button>
+</div>
+
+<!-- Formulaire de création ou modification -->
+<div *ngIf="editing">
+  <h3>{{ isEditing ? 'Modifier la playlist' : 'Créer une nouvelle playlist' }}</h3>
+
+  <!-- Nom de la playlist -->
+  <input [(ngModel)]="playlistName" placeholder="Nom de la playlist" />
+
+  <!-- Sélectionner des fichiers audio -->
+  <input type="file" (change)="onFileSelected($event)" multiple />
+
+  <ul>
+    <li *ngFor="let song of newSongs; let i = index">
+      {{ song.title }}
+      <button (click)="deleteSong(i)">❌</button>
+    </li>
+  </ul>
+
+  <button (click)="savePlaylist()">Enregistrer</button>
 </div>

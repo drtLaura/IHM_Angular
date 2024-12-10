@@ -24,6 +24,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets/audio",
+                "output": "/assets/audio"
               }
             ],
             "styles": [
@@ -94,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "5ff6d941-bce5-42bf-8edf-6483ccf93194"
   }
 }
