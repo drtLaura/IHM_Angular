@@ -55,6 +55,7 @@ export class AuthService {
     if (user) { // si l'utilisateur existe
       this.isAuthenticated.set(true); // maj signal d'authentification
       this.currentUser.set({ id: user.id, username: user.username, pp : user.pp}); // maj signal de l'utilisateur actuel
+      this.currentId = user.id;
       return { success: true }; // retourne un objet avec un succès
     } else { // si l'utilisateur n'existe pas
       this.isAuthenticated.set(false); // maj signal d'authentification
