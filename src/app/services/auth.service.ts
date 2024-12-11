@@ -11,6 +11,8 @@ export class AuthService {
     { id: 1, username: 'user1', password: 'pass1' },
     { id: 2, username: 'user2', password: 'pass2' },
   ];
+  private friends = new BehaviorSubject<{ id: number; username: string }[]>([]);
+  private currentId : number = 0;
 
   constructor() {}
 
@@ -22,6 +24,10 @@ export class AuthService {
     return this.currentUser.value; // renvoie les info de l'utilisateur
   }
 
+  getCurrentUserId(): number {
+    return this.currentId;
+  }
+
   login(username: string, password: string): boolean { // récup les champs du formulaire
     const user = this.Users.find( // on vérifie si l'utilisateur existe
       (u) => u.username === username && u.password === password
@@ -30,6 +36,7 @@ export class AuthService {
     if (user) { // si l'utilisateur existe
       this.isAuthenticated.next(true); // maj du statut à true (authentifié)
       this.currentUser.next({ id: user.id, username: user.username }); // met à jour les info de l'utilisateur
+      this.currentId = user.id;
       return true; // connexion réussie
     } else { // ci l'utilisateur n'existe pas
       this.isAuthenticated.next(false); // maj du statut à false (non authentifié)
@@ -60,6 +67,7 @@ export class AuthService {
 
     this.isAuthenticated.next(true); // authentifié après l'inscription
     this.currentUser.next({ id: newUser.id, username: newUser.username });
+    this.currentId = newUser.id;
     console.log('voici les utilisateurs, register', this.Users);
     return true; // inscription réussie
   }
@@ -67,5 +75,29 @@ export class AuthService {
   logout(): void {
     this.isAuthenticated.next(false); // maj du statut à false (non authentifié)
     this.currentUser.next(null); // maj des info de l'utilisateur à null
+  }
+
+  getFriends(): Observable<{ id: number; username: string }[]> {
+    return this.friends.asObservable();
+  }
+
+  addFriend(userId: number): boolean {
+    const user = this.Users.find((u) => u.id === userId);
+    const currentFriends = this.friends.value;
+
+    if (user && !currentFriends.some((f) => f.id === userId)) {
+      this.friends.next([...currentFriends, user]);
+      return true;
+    }
+    return false;
+  }
+
+  removeFriend(userId: number): boolean {
+    const currentFriends = this.friends.value;
+    if (currentFriends.some((f) => f.id === userId)) {
+      this.friends.next(currentFriends.filter((f) => f.id !== userId));
+      return true;
+    }
+    return false;
   }
 }

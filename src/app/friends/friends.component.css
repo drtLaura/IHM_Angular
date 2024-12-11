@@ -81,10 +81,10 @@
     text-align: center;
   }
 
-  .back button, #show-friends {
+  div {
     margin:1em;
+  }
 
- }
   li {
     list-style-type: none; /* Supprime les puces des éléments de liste */
   padding: 0;

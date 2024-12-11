@@ -81,11 +81,71 @@
     text-align: center;
   }
 
-  .back button, #show-friends {
+  div {
     margin:1em;
+  }
 
- }
   li {
     list-style-type: none; /* Supprime les puces des éléments de liste */
   padding: 0;
+  }
+
+  .my-message {
+    background-color: #9b4dca;  /* Couleur pour les messages envoyés par l'utilisateur */
+    align-self: flex-end;
+    border-radius: 15px;
+    padding: 10px;
+    max-width: 75%;
+    word-wrap: break-word;
+    text-align: justify;
+    margin-bottom:0;
+  }
+  
+  .other-message {
+    background-color: #2e2e2e;  /* Couleur pour les messages des autres utilisateurs */
+    align-self: flex-start;
+    border-radius: 15px;
+    padding: 10px;
+    max-width: 75%;
+    word-wrap: break-word;
+    text-align: justify;
+  }
+
+  .button-messages {
+    float: right;
+    margin: 1em;
+    margin-right: 0;
+  }
+
+  .button-messages button {
+    text-align: right; /* Positionné à droite */
+    margin: 0;
+    padding: 0.5em;
+    font-size: smaller; /* Police plus petite */
+    color: #9b4dca; /* Violet, pour correspondre à la palette existante */
+    background-color: transparent; /* Fond transparent */
+    border: none; /* Supprime les bordures */
+    opacity: 0.8; /* Légèrement estompé */
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.button-messages button:hover {
+    text-decoration: underline; /* Texte souligné au survol */
+    color: #7a38b4; /* Violet plus foncé */
+    opacity: 1; /* Rend le texte complètement opaque */
+    cursor: pointer; /* Pointeur de clic */
+}
+  
+  .date-message {
+    font-size: 8px;
+    opacity:0.7;
+  }
+
+  .content-my-message {
+    text-align:right;
+  }
+
+  .send-message {
+    margin-top: auto;
+    text-align: center;
   }
