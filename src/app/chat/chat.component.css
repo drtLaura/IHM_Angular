@@ -17,7 +17,11 @@
   h2, label {
     color: #9b4dca; /* Violet */
     text-align: center;
-    font-size: 1.3em;
+  }
+
+  #button-chat {
+    text-align:center;
+    margin-top:0;
   }
   
   /* Boutons */
