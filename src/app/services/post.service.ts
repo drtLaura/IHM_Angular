@@ -1,6 +1,6 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Post } from '../models/post.model';
-
+import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root',
 })
@@ -10,15 +10,37 @@ export class PostService {
     { id: 2,  idUser : 2 , content: 'Quel banger !', time: new Date() },
   ]);
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   getPostsSignal(): WritableSignal<Post[]> { // retourne les posts
     return this.posts; // retourne les posts sous WritableSignal<Post[]>
   }
 
+  addPost(postContent: string):  { success: boolean, message?: string }  { // ajoute un post
+    if (!postContent ) { // si les champs ne sont pas remplis
+      return { success: false, message: 'Veuillez remplir tous les champs' };
+    }
+    if (!this.authService.isAuthenticated()) { // vérification de l'authentification
+      return { success: false, message: 'Connectez vous pour pouvoir poster!' };
+    }
+    // on crée un nouvel utilisateur
+    const newPost = {
+      id: this.posts.length + 1,
+      idUser: this.authService.getCurrentUserId(),
+      content: postContent,
+      time: new Date()
+    };
 
-  addPost(post: Post): void { // ajoute un post
-    this.posts.set([...this.posts(), post]); // modifie le writableSignal
+    this.posts.set([...this.posts(), newPost]); // ajoute le nouveau post dans
+    return { success: true }; // retourne un objet avec un succès
+  }
+  updatePost(updatedPost: Post): void {
+    const posts = this.posts().map(post => post.id === updatedPost.id ? updatedPost : post);
+    this.posts.set(posts);
   }
 
+  deletePost(postId: number): void {
+    const posts = this.posts().filter(post => post.id !== postId);
+    this.posts.set(posts);
+  }
 }
