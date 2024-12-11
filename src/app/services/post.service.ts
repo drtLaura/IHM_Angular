@@ -1,13 +1,13 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
-import { Post } from '../modeles/post.interface';
+import { Post } from '../models/post.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
   private posts: WritableSignal<Post[]> = signal([ // initialise les posts avec writableSignal
-    { idPost: 1,  idUser : 1 , content: 'Vous avez des musiques à me conseiller ?', time: new Date() },
-    { idPost: 2,  idUser : 2 , content: 'Quel banger !', time: new Date() },
+    { id: 1,  idUser : 1 , content: 'Vous avez des musiques à me conseiller ?', time: new Date() },
+    { id: 2,  idUser : 2 , content: 'Quel banger !', time: new Date() },
   ]);
 
   constructor() {}

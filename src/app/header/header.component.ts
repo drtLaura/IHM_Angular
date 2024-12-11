@@ -13,7 +13,7 @@ import { MatToolbar } from '@angular/material/toolbar';
 })
 export class HeaderComponent {
   isAuthenticated: Signal<boolean>; // initialise l'état de connexion
-  currentUser: Signal<{ idUser: number; username: string, pp : string} | null>; // initialise l'utilisateur actuel
+  currentUser: Signal<{ id: number; username: string, pp : string} | null>; // initialise l'utilisateur actuel
 
   constructor(private authService: AuthService) { // Injecte le service AuthService
     this.isAuthenticated = this.authService.isAuthenticated;

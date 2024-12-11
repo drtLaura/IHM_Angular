@@ -17,11 +17,7 @@
   h2, label {
     color: #9b4dca; /* Violet */
     text-align: center;
-  }
-
-  #button-chat {
-    text-align:center;
-    margin-top:0;
+    font-size: 1.3em;
   }
   
   /* Boutons */
@@ -85,10 +81,10 @@
     text-align: center;
   }
 
-  .back button, #show-friends {
+  div {
     margin:1em;
+  }
 
- }
   li {
     list-style-type: none; /* Supprime les puces des éléments de liste */
   padding: 0;

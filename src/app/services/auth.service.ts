@@ -1,32 +1,45 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
-import { User } from '../modeles/user.interface';
-
+import { User } from '../models/user.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   isAuthenticated: WritableSignal<boolean> = signal(false); //permet de suivre l'état d'authentification
-  currentUser: WritableSignal<{ idUser: number; username: string, pp: string } | null> = signal(null); // permet de suivre l'utilisateur actuel
+  currentUser: WritableSignal<{ id: number; username: string, pp: string } | null> = signal(null); // permet de suivre l'utilisateur actuel
 
+  private friends = new BehaviorSubject<{ id: number; username: string }[]>([]);
+  private currentId : number = 0;
   private Users: User[] = [
-    { idUser: 1, username: 'user1', password: 'pass1', pp : 'assets/images/pp1.jpg'  },
-    { idUser: 2, username: 'user2', password: 'pass2', pp : 'assets/images/pp2.jpg' },
+    { id: 1, username: 'user1', password: 'pass1', pp : 'assets/images/pp1.jpg'  },
+    { id: 2, username: 'user2', password: 'pass2', pp : 'assets/images/pp2.jpg' },
   ];
 
   constructor() {}
+  // isAuth(): Observable<boolean> {  // vérifie si l'utilisateur est authentifié
+  //   return this.isAuthenticated.asObservable(); // renvoie un observable de behavior subject le statut d'authentification (vrai ou faux)
+  // }
 
-  getUserById(userId: number): User | undefined { // récupérer les infos des users par leur id (id, username, pp)
-    return this.Users.find(user => user.idUser === userId);
+  getCurrentUser(): { id: number, username: string } | null { // récupérer les informations de l'utilisateur
+    return this.currentUser(); // renvoie les info de l'utilisateur
   }
 
-  getUserProfilePictureById(idUser: number): string | undefined { // récupérer la photo de profil des users par leur username
-    const user = this.Users.find(u => u.idUser === idUser);
+  getCurrentUserId(): number {
+    return this.currentId;
+  }
+
+  getUserById(userId: number): User | undefined { // récupérer les infos des users par leur id (id, username, pp)
+    return this.Users.find(user => user.id === userId);
+  }
+
+  getUserProfilePictureById(id: number): string | undefined { // récupérer la photo de profil des users par leur username
+    const user = this.Users.find(u => u.id === id);
     return user?.pp;
   }
 
   getUserNameById(idUser: number): string | undefined { // récupérer la photo de profil des users par leur username
-    const user = this.Users.find(u => u.idUser === idUser);
+    const user = this.Users.find(u => u.id === idUser);
     return user?.username;
   }
 
@@ -41,7 +54,7 @@ export class AuthService {
     );
     if (user) { // si l'utilisateur existe
       this.isAuthenticated.set(true); // maj signal d'authentification
-      this.currentUser.set({ idUser: user.idUser, username: user.username, pp : user.pp}); // maj signal de l'utilisateur actuel
+      this.currentUser.set({ id: user.id, username: user.username, pp : user.pp}); // maj signal de l'utilisateur actuel
       return { success: true }; // retourne un objet avec un succès
     } else { // si l'utilisateur n'existe pas
       this.isAuthenticated.set(false); // maj signal d'authentification
@@ -68,7 +81,7 @@ export class AuthService {
 
     // on crée un nouvel utilisateur
     const newUser = {
-      idUser: this.Users.length + 1,
+      id: this.Users.length + 1,
       username: username,
       password: password1,
       pp : pp
@@ -77,7 +90,8 @@ export class AuthService {
     this.Users.push(newUser); // ajout à la liste des utilisateurs
 
     this.isAuthenticated.set(true); // maj signal d'authentification
-    this.currentUser.set({ idUser: newUser.idUser, username: newUser.username, pp : newUser.pp }); // maj signal de l'utilisateur actuel
+    this.currentUser.set({ id: newUser.id, username: newUser.username, pp : newUser.pp }); // maj signal de l'utilisateur actuel
+    this.currentId = newUser.id;
     return { success: true }; // retourne un objet avec un succès
   }
 
@@ -85,4 +99,29 @@ export class AuthService {
     this.isAuthenticated.set(false);
     this.currentUser.set(null);
   }
+
+  getFriends(): Observable<{ id: number; username: string }[]> {
+    return this.friends.asObservable();
+  }
+
+  addFriend(userId: number): boolean {
+    const user = this.Users.find((u) => u.id === userId);
+    const currentFriends = this.friends.value;
+
+    if (user && !currentFriends.some((f) => f.id === userId)) {
+      this.friends.next([...currentFriends, user]);
+      return true;
+    }
+    return false;
+  }
+
+  removeFriend(userId: number): boolean {
+    const currentFriends = this.friends.value;
+    if (currentFriends.some((f) => f.id === userId)) {
+      this.friends.next(currentFriends.filter((f) => f.id !== userId));
+      return true;
+    }
+    return false;
+  }
+
 }

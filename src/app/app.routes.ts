@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { FluxComponent } from './flux/flux.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { FriendsComponent } from './friends/friends.component';
 // import { authGuard } from './services/guards/auth.guard';
 export const routes: Routes = [
   {

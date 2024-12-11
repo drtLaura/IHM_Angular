@@ -3,7 +3,7 @@ import { PostService } from '../services/post.service';
 import { AuthService } from '../services/auth.service';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
-import { Post } from '../modeles/post.interface';
+import { Post } from '../models/post.model';
 @Component({
   selector: 'app-flux',
   standalone: true,
@@ -21,10 +21,10 @@ export class FluxComponent {
 
   ngOnInit(): void {}
 
-  getUserNameById(idUser: number): string | undefined {
-    return this.authService.getUserNameById(idUser);
+  getUserNameById(id: number): string | undefined {
+    return this.authService.getUserNameById(id);
   }
-  getUserProfilePictureById(idUser: number): string | undefined {
-    return this.authService.getUserProfilePictureById(idUser);
+  getUserProfilePictureById(id: number): string | undefined {
+    return this.authService.getUserProfilePictureById(id);
   }
 }
