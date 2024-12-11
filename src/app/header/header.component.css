@@ -17,5 +17,14 @@ mat-toolbar .buttons button:hover {
 .currentUsername {
 color: #CA9FFF;
 font-size: 0.9rem;
-margin-right: 3rem;
+margin-right: 1rem;
+}
+
+.profile-picture {
+  width: 3vw; /* 5% de la largeur de la fenêtre */
+  height: 3vw; /* 5% de la largeur de la fenêtre pour garder l'image carrée */
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right : 1rem;
+  vertical-align: middle; /* Aligner verticalement avec le texte */
 }

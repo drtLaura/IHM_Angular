@@ -25,6 +25,16 @@
       <mat-error *ngIf="!password2">Champs requis</mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Photo de profil</mat-label>
+      <mat-select [(ngModel)]="pp" name="pp" required>
+        <mat-option *ngFor="let image of listeImages" [value]="image">
+          <img [src]="image" alt="Photo de profil" class="profile-picture-option" /> {{ image.split('/').pop() }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
     <div class="submit-container">
       <button mat-raised-button color="primary" class="submit-button" type="submit">S'inscrire</button>
     </div>

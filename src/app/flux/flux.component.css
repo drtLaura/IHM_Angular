@@ -1,0 +1,51 @@
+.flux {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.post {
+  width: 100%;
+  max-width: 37.5rem;
+  margin-bottom: 1rem;
+}
+
+mat-card {
+  border: 0.125rem solid #232826;
+  box-shadow: 0 0.125rem 0.25rem #232826;
+  border-radius: 0.5rem;
+  background-color : #232826;
+}
+
+/* pour le header du post (utilisateur et date) */
+mat-card-header {
+  display: flex;
+  align-items: center;
+}
+
+/* pour le pseudo */
+mat-card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* pour la date */
+mat-card-subtitle {
+  color: #757575;
+}
+
+/* pour le message */
+mat-card-content {
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+/* pour les images de profil */
+.profile-picture {
+  width: 3rem; /* 48px en rem */
+  height: 3rem; /* 48px en rem */
+  border-radius: 50%; /* Pour rendre l'image circulaire */
+  object-fit: cover; /* Pour s'assurer que l'image couvre tout le conteneur */
+}

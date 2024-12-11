@@ -4,7 +4,7 @@
     <!-- si l'utilisateur est authentifié, afficher un message de bienvenue et le bouton de déconnexion -->
     <ng-container *ngIf="isAuthenticated()">
       <span class="currentUsername">Bonjour  {{ currentUser()?.username }}</span> <!--récupération du pseudo de l'utilisateur -->
-      <button mat-button (click)="logout()">Se déconnecter</button>
+      <img [src]="currentUser()?.pp" alt="Photo de profil" class="profile-picture"> <!-- récupération de la photo de profil de l'utilisateur -->      <button mat-button (click)="logout()">Se déconnecter</button>
     </ng-container>
 
     <!-- si l'utilisateur n'est pas authentifié, afficher les boutons de connexion et d'inscription -->

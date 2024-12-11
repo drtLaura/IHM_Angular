@@ -1,3 +1,16 @@
 <div class="flux">
-  FluxComponent
+  <div *ngFor="let post of posts()" class="post">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar>
+          <img [src]="getUserProfilePictureById(post.idUser)" alt="Non disponible" class="profile-picture">
+        </div>
+        <mat-card-title>{{ getUserNameById(post.idUser) }}</mat-card-title>
+        <mat-card-subtitle>{{ post.time | date:'short' }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ post.content }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
