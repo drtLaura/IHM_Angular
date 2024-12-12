@@ -93,3 +93,17 @@
     list-style-type: none; /* Supprime les puces des éléments de liste */
   padding: 0;
   }
+
+  #chat-list {
+    width:87.5%;
+    text-align:left;
+    margin:1em;
+  }
+
+  #chats-list {
+    text-align:center;
+  }
+
+  .back {
+    text-align:left;
+  }

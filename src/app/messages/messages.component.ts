@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { CommonModule, DatePipe } from '@angular/common';
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-messages',
@@ -16,12 +17,13 @@ export class MessagesComponent implements OnInit {
   messages: { id: number; user: { id: number; username: string }; content: string; date: Date ; isEditing: boolean }[] = [];  // Liste des messages
   currentUserId !: number;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private chatService: ChatService) {
 
   }
 
   ngOnInit(): void {
     this.currentUserId = this.authService.getCurrentUserId();
+    this.messages = this.chatService.getCurrentMessages();
   }
 
   // Fonction pour envoyer un message
@@ -37,6 +39,7 @@ export class MessagesComponent implements OnInit {
         isEditing : false
       };
       this.messages.push(newMessage); // Ajouter le message à la liste
+      //this.chatService.addMessageToChat(this.chatService.getCurrentChatId(),newMessage);
       console.log('Message envoyé:', this.text);
       this.text = '';  // Réinitialiser le message après l'envoi
     } else {
