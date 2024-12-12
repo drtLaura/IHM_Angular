@@ -1,6 +1,6 @@
 <!-- Liste des playlists -->
 <div *ngIf="!selectedPlaylist">
-  <h3>Liste des Playlists</h3>
+  <h3> Playlists</h3>
 
   <!-- Bouton pour créer une nouvelle playlist -->
   <button (click)="startNewPlaylist()">Créer une nouvelle playlist</button>
@@ -18,7 +18,7 @@
   <ul>
     <li *ngFor="let song of selectedPlaylist.songs">
       {{ song.title }}
-      <button (click)="playAudio(song.url)">Play</button>
+      <button (click)="playSong(song.url, song.title)">Play</button>
     </li>
   </ul>
   <button (click)="editPlaylist()">Modifier</button>
@@ -33,7 +33,7 @@
   <input [(ngModel)]="playlistName" placeholder="Nom de la playlist" />
 
   <!-- Sélectionner des fichiers audio -->
-  <input type="file" (change)="onFileSelected($event)" multiple />
+  <input type="file" (change)="onFileSelected($event)" accept=".mp3" multiple />
 
   <ul>
     <li *ngFor="let song of newSongs; let i = index">

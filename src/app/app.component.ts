@@ -7,6 +7,7 @@ import { FluxComponent } from './flux/flux.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { PlayerComponent } from './player/player.component';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
     HeaderComponent,
     PlaylistComponent,
     ChatComponent,
-    FluxComponent],
+    FluxComponent,
+    PlayerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

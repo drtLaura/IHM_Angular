@@ -1,0 +1,37 @@
+.audio-player {
+    position: fixed; /* Fixe le player en bas de la page */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Le player occupe toute la largeur */
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Pour qu'il soit au-dessus des autres éléments */
+    box-sizing: border-box;
+  }
+  
+  .audio-player input[type="range"] {
+    flex-grow: 1; /* Permet au slider de prendre plus de place */
+    margin: 0 10px; /* Espacement autour du slider */
+  }
+  
+  .audio-player button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .audio-player button:hover {
+    background-color: #666;
+  }
+  
+  .audio-player span {
+    font-size: 14px;
+  }
+  
