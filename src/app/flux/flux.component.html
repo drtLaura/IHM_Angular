@@ -1,6 +1,8 @@
 <div class="flux">
-  <div class="custom-checkbox">
-    <mat-checkbox class="checkbox" *ngIf="isLogged" [(ngModel)]="showOnlyMyPosts" (change)="filterPosts()">Seulement mes posts</mat-checkbox>
+
+  <div class="custom-checkbox" *ngIf="isLogged" >
+    <input type="checkbox" id="mesPosts" name="mesPosts" [(ngModel)]="showOnlyMyPosts" (change)="filterPosts()" />
+    <label for="mesPosts">Seulement mes posts</label>
   </div>
   <mat-expansion-panel class='exp-panel'>
     <mat-expansion-panel-header>
@@ -22,7 +24,7 @@
         <button mat-raised-button color="accent" type="submit">Ajouter</button>
       </div>
     </form>
-    {{message}}
+    <div class="message">{{message}}</div>
   </mat-expansion-panel>
 
   <div *ngFor="let post of filteredPosts()" class="post">
@@ -42,21 +44,24 @@
           </button>
         </ng-container>
       </mat-card-header>
+
       <mat-card-content>
         <ng-container *ngIf="editingPostId === post.id; else viewMode">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="content">
             <mat-label>Editer le post</mat-label>
-            <textarea matInput [(ngModel)]="editedContent" required></textarea>
+            <textarea matInput [(ngModel)]="editingContent" required  ></textarea>
           </mat-form-field>
           <div class="submit-container">
             <button mat-raised-button color="primary" (click)="updatePost(post)">Mettre à jour</button>
             <button mat-raised-button color="warn" (click)="cancelEdit()">Annuler</button>
           </div>
         </ng-container>
+
         <ng-template #viewMode>
           <p>{{ post.content }}</p>
         </ng-template>
       </mat-card-content>
+
     </mat-card>
   </div>
 </div>

@@ -1,6 +1,12 @@
 <mat-toolbar color="accent">
-  <div class="buttons">
+  <div class="logo-container">
+    <div class="logo">
+      <i class="fas fa-music"></i>
+      <span class="logo-text">VibeShare</span>
+    </div>
+  </div>
 
+  <div class="buttons">
     <!-- si l'utilisateur est authentifié, afficher un message de bienvenue et le bouton de déconnexion -->
     <ng-container *ngIf="isAuthenticated()">
       <span class="currentUsername">Bonjour  {{ currentUser()?.username }}</span> <!--récupération du pseudo de l'utilisateur -->

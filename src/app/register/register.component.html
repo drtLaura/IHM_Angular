@@ -1,6 +1,7 @@
 <div class="login-container">
-  <h3>Inscrivez vous</h3>
+
   <form *ngIf="registerStatus !== 'success'" (ngSubmit)="onRegister()">
+    <h3>Inscrivez vous</h3>
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>Pseudo</mat-label>
       <input matInput class="field-input" id="username" [(ngModel)]="username" name="username" required />

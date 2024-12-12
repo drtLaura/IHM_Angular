@@ -22,5 +22,6 @@ export class HeaderComponent {
 
   logout(): void { // méthode pour se déconnecter, appele la méthode logout de AuthService
     this.authService.logout();
+    alert ('Vous êtes déconnecté');
   }
 }
