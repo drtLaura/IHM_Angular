@@ -39,6 +39,7 @@ export class MessagesComponent implements OnInit {
         isEditing : false
       };
       this.messages.push(newMessage); // Ajouter le message à la liste
+      //this.chatService.addMessageToChat(this.chatService.getCurrentChatId(),newMessage);
       console.log('Message envoyé:', this.text);
       this.text = '';  // Réinitialiser le message après l'envoi
     } else {

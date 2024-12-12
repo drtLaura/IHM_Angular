@@ -41,6 +41,10 @@ export class ChatService {
     return this.currentChat.messages;
   }
 
+  getCurrentChatId():number{
+    return this.currentChat.id;
+  }
+
   addMessageToChat(chatId: number, message: { userId: number; content: string; date: Date }) {
     const chat = this.getChatById(chatId);
     if (chat) {
