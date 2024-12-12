@@ -62,6 +62,12 @@
         </ng-template>
       </mat-card-content>
 
+      <mat-card-actions>
+        <button mat-icon-button color="warn" (click)="addLike(post.id)" [disabled]="!isLogged || post.idUser === authService.getCurrentUserId() || hasLiked(post)">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <span>{{ post.nblike }}</span>
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>

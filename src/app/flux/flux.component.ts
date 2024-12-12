@@ -73,32 +73,46 @@ export class FluxComponent implements OnInit {
   }
 
   editPost(post: Post): void {
-    this.editingPostId = post.id; // Définit l'ID du post en cours d'édition
+    this.editingPostId = post.id;
     console.log('voici lid du post qui est en train detre modifié :', post.id);
-    this.editingContent = post.content; // Stocke le contenu dans une variable temporaire
+    this.editingContent = post.content;
   }
 
 
   updatePost(post: Post): void {
     if (this.editingPostId === post.id && this.editingContent.trim()) {
-      const updatedPost: Post = { ...post, content: this.editingContent }; // Met à jour uniquement le post sélectionné
-      this.postService.updatePost(updatedPost); // Met à jour le post dans le service
-      this.editingPostId = null; // Réinitialise l'édition
-      this.editingContent = ''; // Nettoie le contenu temporaire
-      this.filterPosts(); // Met à jour la liste des posts filtrés
+      const updatedPost: Post = { ...post, content: this.editingContent };
+      this.postService.updatePost(updatedPost);
+      this.editingPostId = null;
+      this.editingContent = '';
+      this.filterPosts();
     }
   }
 
 
   cancelEdit(): void {
-    this.editingPostId = null; // Annule l'édition pour tous les posts
-    this.editingContent = ''; // Réinitialise le contenu temporaire
+    this.editingPostId = null;
+    this.editingContent = '';
   }
 
 
 
   deletePost(postId: number): void {
     this.postService.deletePost(postId);
-    this.filterPosts(); // Mettre à jour la liste des posts filtrés
+    this.filterPosts();
+  }
+
+  addLike(postId: number): void {
+    const result = this.postService.addLike(postId);
+    if (result.success) {
+      this.filterPosts();
+    } else {
+      this.message = result.message || 'Erreur inconnue';
+    }
+  }
+
+  hasLiked(post: Post): boolean { // vérifie si l'utilisateur a déjà liké le post
+    const currentUserId = this.authService.getCurrentUserId();
+    return post.likedBy.includes(currentUserId);
   }
 }
