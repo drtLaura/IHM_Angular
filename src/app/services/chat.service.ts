@@ -19,7 +19,11 @@ export class ChatService {
     }
   ];
 
-  constructor() { }
+  private currentChat: any = null;
+
+  constructor() { 
+    this.currentChat=[];
+  }
 
   getAllChats(){
     return this.Chats;
@@ -27,6 +31,14 @@ export class ChatService {
 
   getChatById(chatId: number) {
     return this.Chats.find(chat => chat.id === chatId);
+  }
+
+  setCurrentChat(chat: any):void{
+    this.currentChat=chat;
+  }
+
+  getCurrentMessages():any{
+    return this.currentChat.messages;
   }
 
   addMessageToChat(chatId: number, message: { userId: number; content: string; date: Date }) {

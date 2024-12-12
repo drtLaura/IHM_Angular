@@ -33,8 +33,10 @@ export class ChatComponent implements OnInit {
     }[]; 
   }[] = []; // Initialisation à une liste vide
 
+  currentChat: any = null;
+
   constructor(private chatService: ChatService, private authService: AuthService) {
-  } // Correction de "chatServive" en "chatService"
+  } 
 
   ngOnInit(): void {
     // Chargement des données des chats depuis le service
@@ -47,7 +49,11 @@ export class ChatComponent implements OnInit {
   }
 
   // Inverse la visibilité de app-messages
-  toggleMessages(): void {
+  toggleMessages(chat?: any): void {
+    if (chat) {
+      this.currentChat = chat; // Met à jour le chat sélectionné
+      this.chatService.setCurrentChat(chat);
+    }
     this.showMessages = !this.showMessages;
   }
 
@@ -55,4 +61,5 @@ export class ChatComponent implements OnInit {
     const currentUserId = this.authService.getCurrentUserId();
     return chat.users.some(user => user.id === currentUserId);
   }
+
 }
