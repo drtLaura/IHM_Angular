@@ -122,3 +122,8 @@
   .back-button svg {
     margin-right: 0.5rem;
   }
+
+  p{
+    margin:1em;
+    text-align:center;
+  }

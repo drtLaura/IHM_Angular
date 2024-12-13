@@ -6,6 +6,9 @@
     <div id="chats-list">
       <ng-container *ngFor="let chat of chats">
         <!-- Vérification si l'utilisateur est le courant -->
+        <ng-container *ngIf="!isCurrentUser(chat)">
+          <p>Veuillez vous connecter pour accéder à cette section.</p>
+        </ng-container>
         <ng-container *ngIf="isCurrentUser(chat)">
           <ng-container *ngIf="!showMessages">
           <h2 id="chat-title">Discussions</h2>
@@ -53,6 +56,7 @@
           </ng-container>
         </ng-container>
       </ng-container>
+
     </div>
 
     
