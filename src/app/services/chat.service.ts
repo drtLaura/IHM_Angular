@@ -73,14 +73,27 @@ export class ChatService {
     }
   }
 
-  addChat(users: { id: number; username: string }[]) {
-    const newChat = {
-      id: this.Chats.length + 1, // Génère un nouvel ID
-      users: users,
-      name: `Chat ${this.Chats.length + 1}`, // Nom générique
-      messages: [],
+  addChat(newChat: { name: string; usersID: number[], usersUsername: string[]}) {
+    const chatId = this.Chats.length + 1;  // Générer un ID pour la discussion (peut être amélioré)
+    
+    // Créer un tableau d'utilisateurs avec les objets contenant l'id et le nom d'utilisateur
+    const users = newChat.usersID.map((userId, index) => {
+      return { id: userId, username: newChat.usersUsername[index] };
+    });
+    
+    // Créer l'objet de chat avec les utilisateurs et un tableau vide de messages
+    const chat = {
+      id: chatId,
+      name: newChat.name,
+      users: users,  // Utilisateurs avec id et username
+      messages: []  // Initialiser la discussion sans message
     };
-    this.Chats.push(newChat);
+    
+    // Ajouter le chat à la liste des chats
+    this.Chats.push(chat);
+    
+    // Log pour vérifier le chat créé (à retirer dans un environnement de production)
+    console.log('Chat créé :', chat);
   }
 
   // Modifier le nom d'un chat

@@ -1,0 +1,83 @@
+.form-container {
+    margin: 6rem auto;
+    padding: 2rem;
+    background-color: #232826;  /* Rappel de la couleur de fond de Spotify */
+    border-radius: 35px;  /* Coins arrondis pour un design moderne */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);  /* Ombre douce pour un effet de profondeur */
+    color: #CA9FFF;  /* Couleur du texte inspirée de Spotify */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;  /* Ajout d'une transition douce */
+    margin-top : 0;
+  }
+  
+  .form-container:hover {
+    transform: scale(1.02);  /* Agrandissement au survol */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);  /* Ombre plus prononcée au survol */
+  }
+  
+  h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #CA9FFF;
+    font-size: 1.6rem;
+    font-weight: 600;  /* Titre plus visible avec un poids plus fort */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-field {
+    width: 100%;  /* Formulaire prend toute la largeur disponible */
+    margin-bottom: 1.5rem;  /* Espace entre les champs */
+  }
+  
+  
+  .field-input, select {
+    background-color: #2E3531;  /* Fond sombre pour les champs de texte, proche de la couleur de Spotify */
+    border-radius: 15px;  /* Coins arrondis pour les champs de saisie */
+    color: #CA9FFF;  /* Texte dans un ton clair */
+    border: 1px solid #444;  /* Bordure discrète pour plus de style */
+    padding: 12px 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;  /* Transitions douces pour interactions */
+  }
+  
+  .field-input:focus, select:focus {
+    border-color: #CA9FFF;  /* Change la bordure au survol pour mettre en avant */
+    outline: none;
+  }
+
+  select {
+    width:100%;
+  }
+  
+  .submit-container {
+    text-align: center;
+  }
+  
+  .submit-button {
+    background-color: #CA9FFF;  /* Bouton de couleur principale */
+    color: #232826;  /* Couleur de texte sombre pour le bouton */
+    border-radius: 25px;  /* Bouton avec coins arrondis */
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;  /* Transition pour des interactions fluides */
+  }
+  
+  .submit-button:hover {
+    background-color: #B078FF;  /* Change de couleur lorsque le bouton est survolé */
+    transform: scale(1.05);  /* Agrandissement léger pour un effet interactif */
+  }
+  
+  .error-message {
+    color: #D14F4F;  /* Couleur d'erreur en rouge */
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  
