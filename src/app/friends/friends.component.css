@@ -1,9 +1,9 @@
 /* Style général */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Arial', sans-serif; /* Police moderne et épurée */
   }
   
   /* Corps de la page */
@@ -23,19 +23,20 @@
   /* Boutons */
   button {
     background-color: #9b4dca; /* Violet */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  margin: 10px 0;
+  border-radius: 25px; /* Boutons arrondis pour un look moderne */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
   }
   
   button:hover {
     background-color: #7a38b4; /* Violet plus foncé */
-    transform: translateY(-2px);
+  transform: scale(1.05); /* Léger zoom au survol */
   }
   
   /* Bouton spécifique dans la liste des utilisateurs/amis */
@@ -49,6 +50,24 @@
   button.button:hover {
     background-color: #7a38b4;
   }
+
+  #search-button {
+    display: inline-block; /* Permet de les aligner côte à côte */
+  padding: 12px 18px; /* Ajuste la taille pour correspondre visuellement à l'input */
+  border-radius: 25px; /* Arrondi similaire à l’input */
+  background-color: #9b4dca;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  vertical-align: middle; /* Aligne le bouton verticalement avec l'input */
+  transition: background-color 0.3s, transform 0.2s;
+  }
+
+  #search-button:hover {
+    background-color: #7a38b4;
+    transform: scale(1.1);
+  }
   
   button svg {
     fill: white;
@@ -56,19 +75,21 @@
   
   /* Formulaire de création/modification */
   input[type="text"] {
-    width: 75%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 2px solid #9b4dca;
-    border-radius: 5px;
-    background-color: #2e2e2e;
-    color: white;
-    font-size: 16px;
-    transition: border-color 0.3s;
+    width: 70%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 2px solid #9b4dca;
+  border-radius: 25px;
+  background-color: #2e2e2e;
+  color: white;
+  font-size: 16px;
+  transition: border-color 0.3s, background-color 0.3s;
+  margin-right:1em;
   }
   
   input[type="text"]:focus {
     border-color: #7a38b4; /* Violet plus foncé au focus */
+    background-color: #1c1c1c; /* Noir encore plus sombre */
     outline: none;
   }
   
