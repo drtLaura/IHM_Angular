@@ -38,8 +38,8 @@ export class MessagesComponent implements OnInit {
         date: new Date(),  // Enregistrer la date du message
         isEditing : false
       };
-      this.messages.push(newMessage); // Ajouter le message à la liste
-      //this.chatService.addMessageToChat(this.chatService.getCurrentChatId(),newMessage);
+      //this.messages.push(newMessage); // Ajouter le message à la liste
+      this.chatService.addMessageToChat(this.chatService.getCurrentChatId(), newMessage); 
       console.log('Message envoyé:', this.text);
       this.text = '';  // Réinitialiser le message après l'envoi
     } else {
@@ -53,11 +53,14 @@ export class MessagesComponent implements OnInit {
     if (message) {
       message.content = newMessage;
     }
+    this.chatService.updateMessageInChat(this.chatService.getCurrentChatId(), messageId, newMessage); 
   }
 
   // Fonction pour supprimer un message
   deleteMessage(messageId: number) {
     this.messages = this.messages.filter(m => m.id !== messageId);
+    this.chatService.deleteMessageInChat(this.chatService.getCurrentChatId(), messageId);
   }
+
 
 }

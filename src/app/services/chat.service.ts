@@ -45,17 +45,18 @@ export class ChatService {
     return this.currentChat.id;
   }
 
-  addMessageToChat(chatId: number, message: { userId: number; content: string; date: Date }) {
+
+  addMessageToChat(chatId: number, message: {   id: number, user: { id: number, username: string },  content: string, date: Date,  isEditing : boolean }) {
     const chat = this.getChatById(chatId);
     if (chat) {
-      const user = chat.users.find((u) => u.id === message.userId);
+      const user = chat.users.find(u => u.id === message.user.id);
       if (user) {
         chat.messages.push({
-          id: chat.messages.length + 1, // Génère un nouvel ID
-          user,
+          id: chat.messages.length + 1,  // Génère un nouvel ID
+          user: { id: message.user.id, username: message.user.username },
           content: message.content,
           date: message.date,
-          isEdited: false,
+          isEdited: message.isEditing,
         });
       }
     }
@@ -93,6 +94,26 @@ export class ChatService {
   // Supprimer un chat
   deleteChat(chatId: number) {
     this.Chats = this.Chats.filter((chat) => chat.id !== chatId);
+  }
+
+  // Mettre à jour un message dans un chat
+  updateMessageInChat(chatId: number, messageId: number, newContent: string) {
+    const chat = this.getChatById(chatId);
+    if (chat) {
+      const message = chat.messages.find(m => m.id === messageId);
+      if (message) {
+        message.content = newContent;
+        message.isEdited = true;  // Marque comme modifié
+      }
+    }
+  }
+
+  // Supprimer un message dans un chat
+  deleteMessageInChat(chatId: number, messageId: number) {
+    const chat = this.getChatById(chatId);
+    if (chat) {
+      chat.messages = chat.messages.filter(m => m.id !== messageId);
+    }
   }
 
 
