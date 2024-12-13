@@ -25,13 +25,14 @@
           [(ngModel)]="selectedUsers" 
           name="users" 
           required 
+          multiple
           class="field-input"
         >
           <option *ngFor="let user of friends" [value]="user.id">
             {{ user.username }}
           </option>
         </select>
-        <div *ngIf="selectedUsers.length === 0" class="error-message">Utilisateur(s) requis</div>
+        <div *ngIf="!selectedUsers" class="error-message">Utilisateur(s) requis</div>
       </div>
   
       <!-- Bouton de soumission -->
