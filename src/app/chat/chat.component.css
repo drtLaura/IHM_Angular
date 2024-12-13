@@ -5,17 +5,17 @@
     padding: 0;
     font-family: 'Arial', sans-serif;
   }
-  
+
   /* Corps de la page */
   body {
     background-color: #1c1c1c; /* Fond noir */
     color: #eaeaea; /* Texte gris clair */
     padding: 20px;
   }
-  
+
   /* Titre principal */
   h2, label {
-    color: #9b4dca; /* Violet */
+    color: #CA9FFF; /* Violet */
     text-align: center;
   }
 
@@ -23,10 +23,10 @@
     text-align:center;
     margin-top:0;
   }
-  
+
   /* Boutons */
   button {
-    background-color: #9b4dca; /* Violet */
+    background-color: #CA9FFF; /* Violet */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -36,28 +36,28 @@
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
   }
-  
+
   button:hover {
     background-color: #7a38b4; /* Violet plus foncé */
     transform: translateY(-2px);
   }
-  
+
   /* Bouton spécifique dans la liste des utilisateurs/amis */
   button.button {
-    background-color: #9b4dca; /* Violet */
+    background-color: #CA9FFF; /* Violet */
     padding: 8px 15px;
     font-size: 14px;
     margin-left: 10px;
   }
-  
+
   button.button:hover {
     background-color: #7a38b4;
   }
-  
+
   button svg {
     fill: white;
   }
-  
+
   /* Formulaire de création/modification */
   input[type="text"] {
     width: 75%;
@@ -70,17 +70,17 @@
     font-size: 16px;
     transition: border-color 0.3s;
   }
-  
+
   input[type="text"]:focus {
     border-color: #7a38b4; /* Violet plus foncé au focus */
     outline: none;
   }
-  
+
   /* Style pour les icônes SVG */
   svg {
     vertical-align: middle;
   }
-  
+
   #search-username {
     text-align: center;
   }
