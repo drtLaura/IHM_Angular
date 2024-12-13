@@ -1,129 +1,153 @@
 /* Style général */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-  }
-
-  /* Corps de la page */
-  body {
-    background-color: #1c1c1c; /* Fond noir */
-    color: #eaeaea; /* Texte gris clair */
-    padding: 20px;
-  }
-
-  /* Titre principal */
-  h2, label {
-    color: #CA9FFF; /* Violet */
-    text-align: center;
-  }
-
-  #button-chat {
-    text-align:center;
-    margin-top:0;
-  }
-
-  /* Boutons */
-  button {
-    background-color: #CA9FFF; /* Violet */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px 0;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-
-  button:hover {
-    background-color: #7a38b4; /* Violet plus foncé */
-    transform: translateY(-2px);
-  }
-
-  /* Bouton spécifique dans la liste des utilisateurs/amis */
-  button.button {
-    background-color: #CA9FFF; /* Violet */
-    padding: 8px 15px;
-    font-size: 14px;
-    margin-left: 10px;
-  }
-
-  button.button:hover {
-    background-color: #7a38b4;
-  }
-
-  button svg {
-    fill: white;
-  }
-
-  /* Formulaire de création/modification */
-  input[type="text"] {
-    width: 75%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 2px solid #9b4dca;
-    border-radius: 5px;
-    background-color: #2e2e2e;
-    color: white;
-    font-size: 16px;
-    transition: border-color 0.3s;
-  }
-
-  input[type="text"]:focus {
-    border-color: #7a38b4; /* Violet plus foncé au focus */
-    outline: none;
-  }
-
-  /* Style pour les icônes SVG */
-  svg {
-    vertical-align: middle;
-  }
-
-  #search-username {
-    text-align: center;
-  }
-
-  .back button, #show-friends {
-    margin:1em;
-
- }
-  li {
-    list-style-type: none; /* Supprime les puces des éléments de liste */
+  box-sizing: border-box;
+  margin: 0;
   padding: 0;
-  }
+  font-family: 'Roboto', 'Arial', sans-serif; /* Police moderne et épurée */
+}
 
-  #chat-list {
-    width:87.5%;
-    text-align:left;
-    margin:1em;
-  }
+/* Corps de la page */
+body {
+  background-color: #1c1c1c; /* Fond noir */
+  color: #eaeaea; /* Texte gris clair */
+  padding: 20px;
+}
 
-  #chats-list {
-    text-align:center;
-  }
+/* Titre principal */
+h2, label {
+  color: #CA9FFF; /* Violet */
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  .back {
-    text-align:left;
-  }
+#button-chat {
+  text-align: center;
+  margin-top: 0;
+}
 
-  .back-button {
-    background-color: #af8ddd;
-    color: white;
-    margin-top:2rem ;
-    margin-bottom: 2rem;
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-  }
-  
-  .back-button svg {
-    margin-right: 0.5rem;
-  }
+/* Boutons */
+button {
+  background-color: #CA9FFF; /* Violet */
+  color: #1c1c1c;
+  border: none;
+  padding: 12px 30px; /* Plus de padding pour un effet plus ample */
+  margin: 10px 0;
+  border-radius: 50px; /* Coins très arrondis pour un look moderne */
+  font-size: 16px;
+  font-weight: bold; /* Renforcement de la police */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Transition pour une animation fluide */
+  text-transform: uppercase; /* En majuscules pour plus de caractère */
+}
 
-  p{
-    margin:1em;
-    text-align:center;
-  }
+button:hover {
+  background-color: #7a38b4; /* Violet plus foncé */
+  transform: translateY(-5px); /* Léger effet de translation pour l'élévation */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre discrète pour la profondeur */
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(154, 77, 202, 0.6); /* Légère ombre violette au focus */
+}
+
+/* Bouton spécifique dans la liste des utilisateurs/amis */
+button.button {
+  background-color: #CA9FFF; /* Violet */
+  padding: 8px 18px;
+  font-size: 14px;
+  margin-left: 10px;
+  border-radius: 30px; /* Coins arrondis */
+  font-weight: normal;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button.button:hover {
+  background-color: #7a38b4;
+  transform: translateY(-2px); /* Légère élévation au survol */
+}
+
+button svg {
+  fill: #1c1c1c;
+  transition: transform 0.3s ease; /* Animation de l'icône */
+}
+
+button svg:hover {
+  transform: scale(1.1); /* Zoom léger sur l'icône au survol */
+}
+
+/* Formulaire de création/modification */
+input[type="text"] {
+  width: 75%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #9b4dca;
+  border-radius: 5px;
+  background-color: #2e2e2e;
+  color: white;
+  font-size: 16px;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: #7a38b4; /* Violet plus foncé au focus */
+  background-color: #1c1c1c; /* Noir encore plus sombre */
+  outline: none;
+}
+
+/* Style pour les icônes SVG */
+svg {
+  vertical-align: middle;
+}
+
+#search-username {
+  text-align: center;
+}
+
+.back button, #show-friends {
+  margin: 1em;
+}
+
+li {
+  list-style-type: none; /* Supprime les puces des éléments de liste */
+  padding: 0;
+}
+
+#chat-list {
+  width: 87.5%;
+  text-align: left;
+  margin: 1em;
+}
+
+#chats-list {
+  text-align: center;
+}
+
+.back {
+  text-align: left;
+}
+
+.back-button {
+  background-color: #af8ddd;
+  color: #1c1c1c;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 25px; /* Coins arrondis plus importants */
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease; /* Transition pour un effet fluide */
+}
+
+.back-button:hover {
+  background-color: #7a38b4; /* Violet plus foncé au survol */
+}
+
+.back-button svg {
+  margin-right: 0.5rem;
+}
+
+p {
+  margin: 1em;
+  text-align: center;
+}

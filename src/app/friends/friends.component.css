@@ -16,8 +16,9 @@
   /* Titre principal */
   h2, label {
     color: #9b4dca; /* Violet */
-    text-align: center;
-    font-size: 1.3em;
+  text-align: center;
+  font-size: 1.3em; 
+  margin-bottom: 20px;
   }
   
   /* Boutons */
