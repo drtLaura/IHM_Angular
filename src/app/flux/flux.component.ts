@@ -11,6 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flux',
@@ -22,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   templateUrl: './flux.component.html',
   styleUrls: ['./flux.component.css']
 })
+
 export class FluxComponent implements OnInit {
   panelOpenState = false;
   posts: WritableSignal<Post[]>; // initialise les posts
@@ -30,11 +32,11 @@ export class FluxComponent implements OnInit {
   postContent: string = '';
   message: string = '';
   isLogged: boolean = false;
-  editingPostId: number | null = null; // Propriété pour suivre l'identifiant du post en cours d'édition
-  editedContents: { [key: number]: string } = {}; // Propriété pour stocker le contenu édité de chaque post
+  editingPostId: number | null = null;
+  editedContents: { [key: number]: string } = {};
   editingContent: string = '';
 
-  constructor(private postService: PostService, public authService: AuthService) {
+  constructor(private postService: PostService, public authService: AuthService, private router: Router) {
     this.posts = this.postService.getPostsSignal(); // récupération des posts depuis le service
     this.isLogged = this.authService.isAuthenticated();
     this.filteredPosts = signal(this.posts());
@@ -78,7 +80,6 @@ export class FluxComponent implements OnInit {
     this.editingContent = post.content;
   }
 
-
   updatePost(post: Post): void {
     if (this.editingPostId === post.id && this.editingContent.trim()) {
       const updatedPost: Post = { ...post, content: this.editingContent };
@@ -94,8 +95,6 @@ export class FluxComponent implements OnInit {
     this.editingPostId = null;
     this.editingContent = '';
   }
-
-
 
   deletePost(postId: number): void {
     this.postService.deletePost(postId);
@@ -115,4 +114,9 @@ export class FluxComponent implements OnInit {
     const currentUserId = this.authService.getCurrentUserId();
     return post.likedBy.includes(currentUserId);
   }
+
+  viewPost(postId: number): void {
+    this.router.navigate(['/post', postId]);
+  }
+
 }

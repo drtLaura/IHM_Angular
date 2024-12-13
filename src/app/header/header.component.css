@@ -10,7 +10,7 @@ mat-toolbar .buttons {
 }
 
 mat-toolbar .buttons button:hover {
-  background-color: #CA9FFF; /* Couleur violette */
+  background-color: #CA9FFF;
   color: black;
 }
 

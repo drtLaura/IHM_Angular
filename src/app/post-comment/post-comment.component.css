@@ -1,0 +1,88 @@
+
+
+.comment {
+  margin-bottom: 1rem;
+}
+/* pour la date */
+mat-card-subtitle {
+  color: #757575;
+}
+.lePost {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: #000000;
+}
+
+.selected-post .username {
+  color: #ff4081;
+}
+.selected-post .post-content {
+  color: #ff4081; /* Couleur de la police pour le contenu du post */
+}
+/* pour les images de profil */
+.profile-picture {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.back-button {
+  background-color: #af8ddd;
+  color: white;
+  margin-top:2rem ;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.back-button mat-icon {
+  margin-right: 0.5rem;
+}
+/* pour le pseudo */
+mat-card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* pour la date */
+mat-card-subtitle {
+  color: #757575;
+}
+mat-card {
+  border: 0.125rem solid #232826;
+  box-shadow: 0 0.125rem 0.25rem #232826;
+  border-radius: 0.5rem;
+  background-color : #232826;
+}
+
+.titleComment {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000000;
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.message {
+  color: #CA9FFF;
+  margin-top: 1rem;
+}
+
+.exp-panel {
+  width: 100%;
+  max-width: 60rem;
+  margin: 0 auto;
+  margin-bottom: 2em;
+  background-color: #232826;
+}
+.content {
+  width: 100%;
+}
+mat-panel-description button {
+  margin-left: auto;
+}

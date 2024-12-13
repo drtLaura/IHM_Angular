@@ -27,8 +27,8 @@
     <div class="message">{{message}}</div>
   </mat-expansion-panel>
 
-  <div *ngFor="let post of filteredPosts()" class="post">
-    <mat-card>
+  <div *ngFor="let post of filteredPosts()" class="post" >
+    <mat-card class = 'hover'>
       <mat-card-header>
         <div mat-card-avatar>
           <img [src]="getUserProfilePictureById(post.idUser)" alt="Non disponible" class="profile-picture">
@@ -36,7 +36,7 @@
         <mat-card-title>{{ getUserNameById(post.idUser) }}</mat-card-title>
         <mat-card-subtitle>{{ post.time | date:'short' }}</mat-card-subtitle>
         <ng-container *ngIf="post.idUser === authService.getCurrentUserId()">
-          <button mat-icon-button color="primary" (click)="editPost(post)">
+          <button mat-icon-button color="primary" (click)="editPost(post)" >
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" (click)="deletePost(post.id)">
@@ -63,10 +63,13 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-icon-button color="warn" (click)="addLike(post.id)" [disabled]="!isLogged || post.idUser === authService.getCurrentUserId() || hasLiked(post)">
+        <button  mat-icon-button color="warn" (click)="addLike(post.id)" [disabled]="!isLogged || post.idUser === authService.getCurrentUserId() || hasLiked(post)">
           <mat-icon>favorite</mat-icon>
         </button>
         <span>{{ post.nblike }}</span>
+        <button class = 'buttonCom' mat-icon-button color="primary" (click)="viewPost(post.id)">
+          <mat-icon>comment</mat-icon>
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

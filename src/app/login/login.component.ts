@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';  // pour <input matInput>
+import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';

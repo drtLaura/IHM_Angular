@@ -11,6 +11,13 @@
   margin-bottom: 1rem;
 }
 
+.hover:hover {
+  background-color: rgb(26, 17, 30);
+}
+.buttonCom {
+  margin-left: 2.5rem;
+}
+
 mat-card {
   border: 0.125rem solid #232826;
   box-shadow: 0 0.125rem 0.25rem #232826;
