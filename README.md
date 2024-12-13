@@ -1,8 +1,8 @@
 # IHM2 - Angular 
 ## Auteurs :
-DURET Laura 
-PERNIER Alexandre
-PHILIPPE Aurore
+DURET Laura - 
+- PERNIER Alexandre
+- PHILIPPE Aurore
 
 
 ## Rendus 
