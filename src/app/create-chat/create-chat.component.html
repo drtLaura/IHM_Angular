@@ -25,7 +25,6 @@
           [(ngModel)]="selectedUsers" 
           name="users" 
           required 
-          multiple
           class="field-input"
         >
           <option *ngFor="let user of friends" [value]="user.id">
