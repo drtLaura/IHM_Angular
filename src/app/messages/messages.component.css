@@ -162,7 +162,7 @@ input[type="text"]:focus {
 /* Barre de saisie de message */
 #send-message {
   position: absolute;
-  bottom: 60px;
+  bottom: 5em;
   text-align: center; /* Centre les éléments horizontalement */
   margin-top: 20px;
   display: block; /* Assure que le conteneur agit comme un bloc */
