@@ -107,3 +107,18 @@
   .back {
     text-align:left;
   }
+
+  .back-button {
+    background-color: #af8ddd;
+    color: white;
+    margin-top:2rem ;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .back-button svg {
+    margin-right: 0.5rem;
+  }

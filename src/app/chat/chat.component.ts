@@ -4,11 +4,16 @@ import { MessagesComponent } from "../messages/messages.component";
 import { ChatService } from '../services/chat.service';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormField } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [FriendsComponent, MessagesComponent,CommonModule],
+  imports: [FriendsComponent, MessagesComponent,CommonModule,MatButtonModule, MatIconModule, MatCardModule],
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css'] // Correction : styleUrls au lieu de styleUrl
 })
