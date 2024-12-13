@@ -1,0 +1,18 @@
+<div class="audio-player">
+    <div class="current-track-title">
+        {{ audioService.currentTrackTitle || 'Aucune piste en cours' }}
+    </div>
+    <!-- Boutons de contrôle -->
+    <button (click)="audioService.previous()">⏮️</button>
+    <button *ngIf="!audioService.isPlaying" (click)="audioService.resume()">▶️</button>
+    <button *ngIf="audioService.isPlaying" (click)="audioService.pause()">⏸️</button>
+    <button (click)="audioService.next()">⏭️</button>
+
+    <!-- Affichage du temps -->
+    <span>{{ formatTime(audioService.currentTime) }}</span>
+
+    <!-- Slider pour ajuster la position -->
+    <input type="range" [value]="audioService.currentTime" [max]="audioService.duration || 0"
+        (input)="onSeek($event)" />
+    <span>{{ formatTime(audioService.duration) }}</span>
+</div>

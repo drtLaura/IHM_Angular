@@ -26,4 +26,23 @@
   .right-sidenav {
     flex: 0 0 35%; /* Plus large sur les écrans petits */
   }
+
+  .audio-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* S'assurer qu'il est au-dessus d'autres éléments */
+  }
+  
+  .audio-player input[type="range"] {
+    width: 100%;
+  }
+  
 }
