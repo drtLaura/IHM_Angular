@@ -12,7 +12,7 @@
           name="name" 
           required 
           type="text" 
-          placeholder="Entrez le nom de la discussion" 
+          placeholder="Entrez le nom" 
         />
         <div *ngIf="!name" class="error-message">Champ requis</div>
       </div>
@@ -25,14 +25,13 @@
           [(ngModel)]="selectedUsers" 
           name="users" 
           required 
-          multiple
           class="field-input"
         >
           <option *ngFor="let user of friends" [value]="user.id">
             {{ user.username }}
           </option>
         </select>
-        <div *ngIf="!selectedUsers" class="error-message">Utilisateur(s) requis</div>
+        <div *ngIf="selectedUsers.length === 0" class="error-message">Utilisateur(s) requis</div>
       </div>
   
       <!-- Bouton de soumission -->
